@@ -1,30 +1,23 @@
-// Goals in a flow
-
-// => just to make a router that will interact with the frontend(made in routes.go)
-// => a receiever will catch the responses that is built here
 package main
 
 import (
-	"log"
 	"fmt"
+	"log"
 	"net/http"
 )
 
-const webPort = "80"
+const webPort = "8000"
 
-// declaring type for the receiever
 type Config struct {}
-
 
 func main() {
 	app := Config{}
 
-	log.Printf("Starting broker service at port %s", webPort)
+	log.Printf("Starting broker service on port %s\n", webPort)
 
-	// set up the http server
-	srv := &http.Server {
-		Addr : fmt.Sprintf(":%s", webPort),
-		// call routes.go
+	// define http server
+	srv := &http.Server{
+		Addr: fmt.Sprintf(":%s", webPort),
 		Handler: app.routes(),
 	}
 
